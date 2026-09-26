@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>秦淮夜游 · 夫子庙</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #071218;
+        --deep: #0d1f28;
+        --teal: #1a3a45;
+        --mist: #c5d4d8;
+        --lantern: #d4a04a;
+        --lantern-soft: #e8c078;
+        --paper: #f2ebe0;
+        --river: #2a5f6e;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Noto Sans SC", sans-serif;
+        color: var(--paper);
+        background: var(--ink);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* —— Hero: one composition —— */
+      .hero {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        align-items: end;
+        isolation: isolate;
+      }
+
+      .hero__media {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        overflow: hidden;
+      }
+
+      .hero__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 40%;
+        transform: scale(1.06);
+        animation: kenburns 22s ease-out forwards;
+      }
+
+      .hero__veil {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(
+            to top,
+            rgba(7, 18, 24, 0.92) 0%,
+            rgba(7, 18, 24, 0.45) 42%,
+            rgba(13, 31, 40, 0.25) 70%,
+            rgba(7, 18, 24, 0.35) 100%
+          ),
+          radial-gradient(
+            ellipse 80% 50% at 70% 30%,
+            rgba(212, 160, 74, 0.12),
+            transparent 60%
+          );
+      }
+
+      .hero__content {
+        width: min(920px, 92vw);
+        margin: 0 auto;
+        padding: 0 0 clamp(3.5rem, 8vh, 5.5rem);
+      }
+
+      .brand {
+        font-family: "Ma Shan Zheng", cursive;
+        font-size: clamp(2.8rem, 8vw, 5.5rem);
+        letter-spacing: 0.08em;
+        color: var(--lantern-soft);
+        line-height: 1.1;
+        opacity: 0;
+        animation: rise 1s ease 0.2s forwards;
+      }
+
+      .hero h1 {
+        font-family: "Noto Serif SC", serif;
+        font-weight: 600;
+        font-size: clamp(1.35rem, 3.2vw, 2rem);
+        margin-top: 0.85rem;
+        letter-spacing: 0.18em;
+        opacity: 0;
+        animation: rise 1s ease 0.45s forwards;
+      }
+
+      .hero__lead {
+        margin-top: 0.9rem;
+        max-width: 28em;
+        font-weight: 300;
+        font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+        color: var(--mist);
+        letter-spacing: 0.06em;
+        opacity: 0;
+        animation: rise 1s ease 0.7s forwards;
+      }
+
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem 1.25rem;
+        margin-top: 1.75rem;
+        opacity: 0;
+        animation: rise 1s ease 0.95s forwards;
+      }
+
+      .cta__primary {
+        display: inline-block;
+        padding: 0.85rem 1.6rem;
+        background: var(--lantern);
+        color: var(--ink);
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        transition: background 0.25s ease, transform 0.25s ease;
+      }
+
+      .cta__primary:hover {
+        background: var(--lantern-soft);
+        transform: translateY(-2px);
+      }
+
+      .cta__ghost {
+        display: inline-block;
+        padding: 0.85rem 0.4rem;
+        color: var(--mist);
+        letter-spacing: 0.14em;
+        border-bottom: 1px solid rgba(232, 192, 120, 0.45);
+        transition: color 0.25s ease, border-color 0.25s ease;
+      }
+
+      .cta__ghost:hover {
+        color: var(--lantern-soft);
+        border-color: var(--lantern-soft);
+      }
+
+      /* —— Sections —— */
+      section {
+        padding: clamp(4rem, 10vh, 7rem) 0;
+      }
+
+      .wrap {
+        width: min(920px, 92vw);
+        margin: 0 auto;
+      }
+
+      .section-label {
+        font-family: "Noto Serif SC", serif;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        letter-spacing: 0.12em;
+        margin-bottom: 0.75rem;
+      }
+
+      .section-copy {
+        max-width: 36em;
+        color: var(--mist);
+        font-weight: 300;
+        letter-spacing: 0.04em;
+      }
+
+      .river {
+        background:
+          linear-gradient(180deg, var(--ink) 0%, var(--deep) 40%, var(--teal) 100%);
+      }
+
+      .river__visual {
+        margin-top: 2.5rem;
+        width: 100%;
+        max-height: min(62vh, 520px);
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.9s ease, transform 0.9s ease;
+      }
+
+      .river__visual.is-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .route {
+        background: var(--deep);
+        border-top: 1px solid rgba(197, 212, 216, 0.08);
+      }
+
+      .route ol {
+        list-style: none;
+        margin-top: 2.25rem;
+        counter-reset: stop;
+        display: grid;
+        gap: 1.75rem;
+      }
+
+      .route li {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1.1rem 1.4rem;
+        align-items: start;
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      .route li.is-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .route li::before {
+        counter-increment: stop;
+        content: counter(stop, cjk-ideographic);
+        font-family: "Ma Shan Zheng", cursive;
+        font-size: 1.75rem;
+        color: var(--lantern);
+        line-height: 1;
+        min-width: 1.5em;
+      }
+
+      .route h3 {
+        font-family: "Noto Serif SC", serif;
+        font-weight: 500;
+        font-size: 1.15rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.35rem;
+      }
+
+      .route p {
+        color: var(--mist);
+        font-weight: 300;
+        font-size: 0.95rem;
+      }
+
+      .visit {
+        background:
+          radial-gradient(
+            ellipse 70% 80% at 10% 20%,
+            rgba(42, 95, 110, 0.35),
+            transparent 55%
+          ),
+          var(--ink);
+        text-align: center;
+      }
+
+      .visit .section-copy {
+        margin-inline: auto;
+      }
+
+      .visit__cta {
+        margin-top: 1.75rem;
+        display: inline-block;
+        padding: 0.95rem 2rem;
+        border: 1px solid var(--lantern);
+        color: var(--lantern-soft);
+        letter-spacing: 0.16em;
+        transition: background 0.25s ease, color 0.25s ease;
+      }
+
+      .visit__cta:hover {
+        background: var(--lantern);
+        color: var(--ink);
+      }
+
+      footer {
+        padding: 2rem 0 2.5rem;
+        text-align: center;
+        color: rgba(197, 212, 216, 0.45);
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+      }
+
+      footer a {
+        color: rgba(232, 192, 120, 0.65);
+      }
+
+      .back {
+        position: fixed;
+        top: 1.25rem;
+        left: 1.25rem;
+        z-index: 10;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        color: var(--mist);
+        background: rgba(7, 18, 24, 0.45);
+        padding: 0.45rem 0.75rem;
+        backdrop-filter: blur(6px);
+        transition: color 0.2s ease;
+      }
+
+      .back:hover {
+        color: var(--lantern-soft);
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes kenburns {
+        to {
+          transform: scale(1);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero__content {
+          padding-bottom: 3rem;
+        }
+
+        .brand {
+          letter-spacing: 0.04em;
+        }
+
+        .hero h1 {
+          letter-spacing: 0.1em;
+        }
+
+        .cta {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="back" href="../index.html">← 作品集</a>
+
+    <header class="hero">
+      <div class="hero__media" aria-hidden="true">
+        <img
+          src="../assets/images/qinhuai-night.jpg"
+          alt=""
+          width="1920"
+          height="1280"
+        />
+      </div>
+      <div class="hero__veil" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="brand">秦淮夜游</p>
+        <h1>夫子庙 · 秦淮河</h1>
+        <p class="hero__lead">
+          桨声灯影里，金陵最动人的夜色缓缓展开。
+        </p>
+        <div class="cta">
+          <a class="cta__primary" href="#visit">预约夜航</a>
+          <a class="cta__ghost" href="#route">游览路线</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="river" id="river" aria-labelledby="river-title">
+      <div class="wrap">
+        <h2 class="section-label" id="river-title">十里秦淮</h2>
+        <p class="section-copy">
+          两岸飞檐映水，画舫穿行灯海。从夫子庙码头登船，夜风带着桂香与市井烟火，河面把整座古城轻轻托起。
+        </p>
+        <img
+          class="river__visual"
+          src="../assets/images/qinhuai-cruise.jpg"
+          alt="夫子庙秦淮河夜航画舫"
+          width="1600"
+          height="900"
+          loading="lazy"
+        />
+      </div>
+    </section>
+
+    <section class="route" id="route" aria-labelledby="route-title">
+      <div class="wrap">
+        <h2 class="section-label" id="route-title">夜航三驿</h2>
+        <p class="section-copy">一条水道，三处停泊，把金陵的故事连成一夜。</p>
+        <ol>
+          <li>
+            <div>
+              <h3>夫子庙灯市</h3>
+              <p>红墙金匾，万灯齐明。登船前先走一遭庙前灯市，热气与光影替夜航暖场。</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>乌衣巷口</h3>
+              <p>朱雀桥边野草花。船过王谢故地，灯影碎在涟漪上，旧事只余一痕水纹。</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>中华门夜色</h3>
+              <p>古城墙沉在河岸深处，船头一转，城垛与灯火叠成金陵最沉静的句号。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="visit" id="visit" aria-labelledby="visit-title">
+      <div class="wrap">
+        <h2 class="section-label" id="visit-title">今夜启航</h2>
+        <p class="section-copy">
+          建议傍晚抵达夫子庙，先看灯市，再择晚班画舫。河风微凉，带一件薄外套即可。
+        </p>
+        <a
+          class="visit__cta"
+          href="https://www.google.com/maps/search/南京夫子庙秦淮河"
+          target="_blank"
+          rel="noopener noreferrer"
+          >查看地图</a
+        >
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        页面摄影来自 Wikimedia Commons（
+        <a
+          href="https://commons.wikimedia.org/wiki/File:Confucius_Temple_and_Qinhuai_River,_Nanjing_Night.jpg"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Dick Rochester</a
+        >
+        ·
+        <a
+          href="https://commons.wikimedia.org/wiki/File:Night_View_of_Qinhuai_River_with_Scenic_Cruise_in_Fuzi_Miao_20170519.jpg"
+          target="_blank"
+          rel="noopener noreferrer"
+          >夜航画舫</a
+        >
+        ）
+      </p>
+    </footer>
+
+    <script>
+      const reveal = (els, rootMargin = "0px 0px -8% 0px") => {
+        const nodes = [...els];
+        if (!nodes.length) return;
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-in");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin, threshold: 0.15 }
+        );
+        nodes.forEach((el, i) => {
+          el.style.transitionDelay = `${i * 0.12}s`;
+          io.observe(el);
+        });
+      };
+
+      reveal(document.querySelectorAll(".river__visual"));
+      reveal(document.querySelectorAll(".route li"));
+    </script>
+  </body>
+</html>
